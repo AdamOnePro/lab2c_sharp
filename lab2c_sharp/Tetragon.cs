@@ -11,6 +11,7 @@ namespace lab2c_sharp
         public double[] pX;
         public double[] pY;
         
+
         public Tetragon()
             {
             pX = new double[4];
@@ -19,8 +20,8 @@ namespace lab2c_sharp
 
             for (int i = 0; i < 4; i++)
             {
-                pX[i] = randP.Next(-5, 5);
-                pY[i] = randP.Next(-5, 5);
+                pX[i] = randP.Next(-5, 10);
+                pY[i] = randP.Next(-5, 10);
             }
 
             
@@ -74,24 +75,17 @@ namespace lab2c_sharp
             return P;
         }
 
-        public double GetHalfPerimeter1()
+        public double GetHalfPerimeter()
         {
-            double HP1 = (GetSideAB() + GetSideAD() + GetDiagonale2()) / 2;
-            return HP1;
+            return GetPerimeter() / 2;
         }
-
-        public double GetHalfPerimeter2()
-        {
-            double HP2 = (GetSideBC() + GetSideCD() + GetDiagonale2()) / 2;
-            return HP2;
-        }
+        
 
         public double GetSquare()
         {
-            //Вычисление площади с помощью формулы Герона(разбив 4х угольник на 2 треугольника), выше нашли 2 полпериметра треугольников, и дальше находим площадь каждого тр-ника
-            double S1 = Math.Sqrt(GetHalfPerimeter1() * (GetHalfPerimeter1() - GetSideAB()) * (GetHalfPerimeter1() - GetSideAD()) * (GetHalfPerimeter1() - GetDiagonale2()));
-            double S2 = Math.Sqrt(GetHalfPerimeter2() * (GetHalfPerimeter2() - GetSideBC()) * (GetHalfPerimeter2() - GetSideCD()) * (GetHalfPerimeter2() - GetDiagonale2()));
-            return S1+S2;
+            //вычисление площади с помощью полпериметра
+
+            return Math.Sqrt((GetHalfPerimeter() - GetSideAB()) * (GetHalfPerimeter() - GetSideAD()) * (GetHalfPerimeter() - GetSideBC()) * (GetHalfPerimeter() - GetSideCD()));
 
         }
 
